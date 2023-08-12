@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">TCGBolivia</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <!-- home -->
+    <string name="homewelcome">Wellcome to</string>
+    <string name="homename">TCGBolivia</string>
+    <string name="homedata">COLLECT. TRACK. PROFIT</string>
+    <string name="hometip1">Start building your Collecions!</string>
+    <string name="hometip2">Before we can create any charts, well first need to get some products in here!</string>
+    <string name="homebuttonadd">Add Products</string>
+    <string name="homewant">Want to save your collection?</string>
+    <string name="homebuttonregister">register or Login here</string>
+    <!-- marketplace -->
+    <string name="marketsearch">search</string>
+    <string name="marketquick_filters">Quick Filters</string>
+    <string name="market2search">Search</string>
+    <string name="marketmarketplace">Marketplace</string>
+    <!--menu-->
+    <string name="menuhome">Home</string>
+    <string name="menusearch">Search</string>
+    <string name="menusocial">Social</string>
+    <string name="menuportfolio">Portfolio</string>
+    <string name="menuprofile">Profile</string>
+    <!--social-->
+    <string name="socialtext1">Its time to connect</string>
+    <string name="sociallogin">Login</string>
+    <string name="socialtext2">Login required for social access</string>
+    <!--portfolio-->
+    <string name="portfotext1">You have not added anything yet!</string>
+    <string name="portfotext2">Lets get some products in here!</string>
+    <string name="portfobuttonadd">Add Products</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--profile-->
+
+
+</resources>

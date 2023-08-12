@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1049242322995",
+    "project_id": "tcg-bolivia",
+    "storage_bucket": "tcg-bolivia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049242322995:android:e3f3f6be9c56123fe53b46",
+        "android_client_info": {
+          "package_name": "com.slaytertv.tcgbolivia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049242322995-om32n71gntndgh2mmgflucm8g2gcsi6m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.slaytertv.tcgbolivia",
+            "certificate_hash": "840006a5bdd8c4d7182f44c3f6c886b98c9cb6ef"
+          }
+        },
+        {
+          "client_id": "1049242322995-ea0tdnke0ig1s6ki69kqq10fb6ccdks2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUNiXS6qyqr77P7OHC6u0pS-NwNsN_ZgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1049242322995-ea0tdnke0ig1s6ki69kqq10fb6ccdks2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
