@@ -1,6 +1,53 @@
 <resources>
     <string name="app_name">TCGBolivia</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <!-- activity Login -->
+    <!-- saber si esta abierto o cerrado -->
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <!-- datos para pedir en el registro -->
+    <string name="enter_first_name">Introduzca sus Nombres</string>
+    <string name="enter_last_name">Introduzca su Apellidos</string>
+    <!-- datos para el email  login,etc -->
+    <string name="enter_email">Introduzca la dirección de correo electrónico</string>
+    <string name="invalid_email">Correo electrónico ingresado no válido</string>
+    <!-- datoos del password -->
+    <string name="enter_password">Ingrese Contraseña</string>
+    <string name="invalid_password">Tu contraseña debe contener mas de 8 caracteres</string>
+    <string name="email_hint">Correo</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="repassword_hint">Las Contraseñas no coinciden</string>
+    <string name="forgot_password">Olvido su contraseña?Actualizela</string>
+    <string name="forgot_password_hint">Agregue el correo y presione enviar</string>
+    <!-- otros -->
+    <string name="login">Ingresar</string>
+    <string name="logout">Cerrar Sesion</string>
+    <string name="send">Enviar</string>
+    <string name="create_account">No tienes una cuenta? Registrate!</string>
+    <string name="logindetail">Aplicacion para q lleves tu rutina al maximo</string>
+    <string name="male">Hombre</string>
+    <string name="female">Mujer</string>
+    <string name="other">Otro</string>
+    <string name="first_name_hint">nombres</string>
+    <string name="last_name_hint">apellidos</string>
+    <string name="birth_date_hint">fecha de nacimineto</string>
+    <string name="phone_number_hint">Telefono</string>
+    <string name="tituloregistro">Registro</string>
+    <string name="detalleregistro">Rellene todos los datos</string>
+    <string name="register_hint">Registrar</string>
+    <string name="tituloforgotpass">Olvido su contraseña</string>
+    <string name="detailforgotpass">agregue su correo y presione "Enviar"</string>
+    <string name="enviarforgotpass">enviar mensaje</string>
+    <string name="cel">telefono/celular</string>
+    <string name="genero">genero</string>
+
+
+
+
+
+
+
+
     <!-- home -->
     <string name="homewelcome">Wellcome to</string>
     <string name="homename">TCGBolivia</string>

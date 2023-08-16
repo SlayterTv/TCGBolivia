@@ -78,7 +78,10 @@ dependencies {
     implementation ("com.google.dagger:hilt-android:2.44")
     kapt ("com.google.dagger:hilt-android-compiler:2.44")
     kapt ("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0")
-
-
-
+    //retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    //glide
+    implementation ("com.github.bumptech.glide:glide:4.12.0") // Reemplaza con la versión más reciente
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 }
