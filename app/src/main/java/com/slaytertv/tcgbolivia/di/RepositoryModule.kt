@@ -2,10 +2,13 @@ package com.slaytertv.tcgbolivia.di
 
 import android.content.SharedPreferences
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.slaytertv.tcgbolivia.data.repository.AuthRepository
 import com.slaytertv.tcgbolivia.data.repository.AuthRepositoryImp
+import com.slaytertv.tcgbolivia.data.repository.CardsRepository
+import com.slaytertv.tcgbolivia.data.repository.CardsRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,14 +19,15 @@ import javax.inject.Singleton
 @Module
 object RepositoryModule {
     //para usar firestore y storage
-    /*@Provides
+    @Provides
     @Singleton
-    fun provideNoteRepository(
+    fun provideCardRepository(
+        auth: FirebaseAuth,
         database: FirebaseFirestore,
-        storageReference: StorageReference
-    ): LaptopRepository {
-        return LaptopRepositoryImp(database,storageReference)
-    }*/
+        databaseD: FirebaseDatabase
+    ): CardsRepository {
+        return CardsRepositoryImpl(auth,database,databaseD)
+    }
     /*
     //indicamos q nuestro task repositoey se use con imp
     @Provides

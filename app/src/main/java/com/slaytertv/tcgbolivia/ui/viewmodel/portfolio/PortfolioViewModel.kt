@@ -5,13 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.slaytertv.tcgbolivia.data.model.CardItem
+import com.slaytertv.tcgbolivia.data.repository.CardsRepository
 import com.slaytertv.tcgbolivia.data.repository.YgoProDeckApiServiceImp
+import com.slaytertv.tcgbolivia.util.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PortfolioViewModel @Inject constructor(private val repository: YgoProDeckApiServiceImp) : ViewModel() {
+class PortfolioViewModel @Inject constructor(
+    private val repository: YgoProDeckApiServiceImp,
+    val repositoryfirebase: CardsRepository
+) : ViewModel() {
 
     private val _cardsLiveData = MutableLiveData<List<CardItem>?>()
     val cardsLiveData: LiveData<List<CardItem>?> get() = _cardsLiveData
@@ -30,5 +35,21 @@ class PortfolioViewModel @Inject constructor(private val repository: YgoProDeckA
                 // Manejar el error si hay una excepción
             }
         }
+    }
+    ////
+
+    private val _registerbuy = MutableLiveData<UiState<String>>()
+    //para ver los datos actuales
+    val registerbuy: LiveData<UiState<String>>
+        get() = _registerbuy
+
+    //funcion cuando se registren
+    fun registerbuy(
+        card: CardItem
+    ) {
+        _registerbuy.value = UiState.Loading
+        repositoryfirebase.createCardBuy(
+            card = card
+        ) { _registerbuy.value = it }
     }
 }

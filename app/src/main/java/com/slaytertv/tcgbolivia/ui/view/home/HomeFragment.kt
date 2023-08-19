@@ -8,7 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.slaytertv.tcgbolivia.MainActivity
@@ -19,6 +22,14 @@ import com.slaytertv.tcgbolivia.util.hide
 import com.slaytertv.tcgbolivia.util.show
 import dagger.hilt.android.AndroidEntryPoint
 import com.slaytertv.tcgbolivia.AuthActivity
+import com.slaytertv.tcgbolivia.ui.adapters.home.HomeCardBuyAdapter
+import com.slaytertv.tcgbolivia.ui.adapters.home.HomeCardSellAdapter
+import com.slaytertv.tcgbolivia.ui.adapters.home.HomeCardTopAdapter
+import com.slaytertv.tcgbolivia.ui.viewmodel.home.HomeCardsBuyViewModel
+import com.slaytertv.tcgbolivia.ui.viewmodel.home.HomeCardsSellViewModel
+import com.slaytertv.tcgbolivia.ui.viewmodel.home.HomeCardsTopViewModel
+import com.slaytertv.tcgbolivia.util.UiState
+import com.slaytertv.tcgbolivia.util.toast
 
 
 @AndroidEntryPoint
@@ -36,6 +47,47 @@ class HomeFragment : Fragment() {
             requireActivity().finish()
         }
     }
+    //viewmodels
+    val viewModelCardbuy: HomeCardsBuyViewModel by viewModels()//cardbuy
+    val viewModelCardsell: HomeCardsSellViewModel by viewModels()//cardsell
+    val viewModelCardTop: HomeCardsTopViewModel by viewModels()//cardtop
+    //adapter que mandara los items al adapter para poder realizar las funciones que indica
+    val adaptercardbuy by lazy {
+        HomeCardBuyAdapter(
+            onItemClicked = { pos, item ->
+                toast(item.toString())
+                //itemselected(item.id,item.name,"movie", email)
+                /*findNavController().navigate(R.id.action_principalFragment_to_chaptersFragment,Bundle().apply {
+                    putParcelable("note",item)
+                })*/
+
+            }
+        )
+    }
+    val adaptercardsell by lazy {
+        HomeCardSellAdapter(
+            onItemClicked = { pos, item ->
+                toast(item.toString())
+                //itemselected(item.id,item.name,"serie", email)
+                //val user = MovieItem(item.id,"serie",item.name,item.desc,item.image,item.date,item.season,item.episodes,"","","")
+                /*findNavController().navigate(R.id.action_principalFragment_to_chaptersFragment,Bundle().apply {
+                    putParcelable("note",item)
+                })*/
+            }
+        )
+    }
+    val adaptercardtop by lazy {
+        HomeCardTopAdapter(
+            onItemClicked = { pos, item ->
+                toast(item.toString())
+                /*itemselected(item.id,"${item.name}","chapter", email)
+                findNavController().navigate(R.id.action_principalFragment_to_onlineActivity,Bundle().apply {
+                    putString("note",item.link)
+                })*/
+            }
+        )
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,22 +106,28 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //llamar observer
         botones()
-
         verificaranonimo()
-        verificarrecycler()
+        observerB()
+        observerS()
+        observerT()
+        viewModelCardbuy.getCardBuy()
+        viewModelCardsell.getCardSell()
+        viewModelCardTop.getCardTop()
+
+        //recycleradd
+        val staggeredGridLayoutManagerS = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        val staggeredGridLayoutManagerT = LinearLayoutManager(activity,RecyclerView.HORIZONTAL,false)
+        val staggeredGridLayoutManagerB = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        binding.homerecyclerviewbuy.layoutManager = staggeredGridLayoutManagerB
+        binding.homerecyclerviewsell.layoutManager = staggeredGridLayoutManagerS
+        binding.homerecyclerviewTop.layoutManager = staggeredGridLayoutManagerT
+
+        binding.homerecyclerviewbuy.adapter = adaptercardbuy
+        binding.homerecyclerviewsell.adapter = adaptercardsell
+        binding.homerecyclerviewTop.adapter = adaptercardtop
+
+
     }
-
-    private fun verificarrecycler() {
-        /*// Supongamos que tienes los adaptadores para tus RecyclerView
-        val buyAdapter = // ... (inicializa tu adaptador)
-        val sellAdapter = // ... (inicializa tu adaptador)
-            binding.homerecyclerviewbuy.adapter = buyAdapter
-        binding.homerecyclerviewsell.adapter = sellAdapter
-
-        checkRecyclerViewData(buyAdapter, binding.homerecyclerviewbuy)
-        checkRecyclerViewData(sellAdapter, binding.homerecyclerviewsell)*/
-    }
-
     private fun verificaranonimo() {
         auth = FirebaseAuth.getInstance()
 
@@ -96,18 +154,60 @@ class HomeFragment : Fragment() {
             val authIntent = Intent(requireContext(), AuthActivity::class.java)
             authLauncher.launch(authIntent)
         }
-
-
-
     }
-    //revisar si tienes datos los recycler
-    private fun checkRecyclerViewData(adapter: RecyclerView.Adapter<*>, recyclerView: RecyclerView) {
-        if (adapter.itemCount > 0) {
-            binding.homesinanda.hide()
-            binding.homeconcosas.show()
-        } else {
-            binding.homesinanda.show()
-            binding.homeconcosas.hide()
+
+    private fun observerT() {
+        viewModelCardTop.cardtop.observe(viewLifecycleOwner) { state ->
+            when(state){
+                is UiState.Loading -> {
+                    binding.homeProgresbarTop.show()
+                }
+                is UiState.Failure -> {
+                    binding.homeProgresbarTop.hide()
+                    toast(state.error)
+                }
+                is UiState.Sucess -> {
+                    binding.homeProgresbarTop.hide()
+                    adaptercardtop.updateList(state.data.toMutableList())
+                }
+            }
         }
     }
+
+    private fun observerB() {
+        viewModelCardbuy.cardbuy.observe(viewLifecycleOwner) { state ->
+            when(state){
+                is UiState.Loading -> {
+                    binding.homeProgresbarbuy.show()
+                }
+                is UiState.Failure -> {
+                    binding.homeProgresbarbuy.hide()
+                    toast(state.error)
+                }
+                is UiState.Sucess -> {
+                    binding.homeProgresbarbuy.hide()
+                    adaptercardbuy.updateList(state.data.toMutableList())
+                }
+            }
+        }
+    }
+
+    private fun observerS() {
+        viewModelCardsell.cardsell.observe(viewLifecycleOwner){ state ->
+            when(state){
+                is UiState.Loading -> {
+                    binding.homeProgressbarsell.show()
+                }
+                is UiState.Failure -> {
+                    binding.homeProgressbarsell.hide()
+                    toast(state.error)
+                }
+                is UiState.Sucess -> {
+                    binding.homeProgressbarsell.hide()
+                    adaptercardsell.updateList(state.data.toMutableList())
+                }
+            }
+        }
+    }
+
 }

@@ -1,6 +1,5 @@
 
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -10,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.FirebaseFirestore
-
 import com.slaytertv.tcgbolivia.data.model.CardItem
 import com.slaytertv.tcgbolivia.databinding.ListItemCardBinding
 
 
-class CardsAdapter : ListAdapter<CardItem, CardsAdapter.CardViewHolder>(CardDiffCallback()) {
+class CardsAdapter (
+    val onItemClicked: (Int, CardItem) -> Unit,
+): ListAdapter<CardItem, CardsAdapter.CardViewHolder>(CardDiffCallback()) {
 
     private var cardImageUrls: List<String> = emptyList()
 
@@ -74,7 +73,7 @@ class CardsAdapter : ListAdapter<CardItem, CardsAdapter.CardViewHolder>(CardDiff
                 card.precio = precio
                 card.user = currentUser!!.uid
                 card.useridcard = "${currentUser!!.uid}_${card.id}"
-                guardardatosventa(card,context)
+                onItemClicked.invoke(adapterPosition,card)
             }
         }
 
@@ -92,23 +91,6 @@ class CardDiffCallback : DiffUtil.ItemCallback<CardItem>() {
         return oldItem == newItem
     }
 }
-//guardarventa y datos en nuestro user
-fun guardardatosventa(card: CardItem,xcontext:Context){
-    val firestore = FirebaseFirestore.getInstance()
-    val collectionRef = firestore.collection("Ventas").document(card.useridcard)
-    val collectionuserRef = firestore.collection("user").document(card.user).collection("venta").document(card.useridcard)
-    // Get a new write batch and commit all write operations
-    firestore.runBatch { batch ->
-        // Set the value of 'NYC'
-        batch.set(collectionuserRef, card)
-        batch.set(collectionRef, card)
-    }.addOnCompleteListener {
-        Toast.makeText(xcontext, "Carta lista para la venta", Toast.LENGTH_SHORT).show()
-    }.addOnFailureListener { e ->
-        Toast.makeText(xcontext, "Error al guardar la carta: ${e.message}", Toast.LENGTH_SHORT).show()
-    }
-}
-
 
 //verificar anonimo
 private fun verificaranonimo(): String {

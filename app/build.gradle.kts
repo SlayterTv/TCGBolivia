@@ -7,6 +7,7 @@ plugins {
     id ("dagger.hilt.android.plugin")
     //Kapt is the Kotlin Annotation Processing Tool - Kapt es la herramienta de procesamiento de anotaciones de Kotlin
     id ("kotlin-kapt")
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -84,4 +85,7 @@ dependencies {
     //glide
     implementation ("com.github.bumptech.glide:glide:4.12.0") // Reemplaza con la versión más reciente
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    //
+    //implementation ("org.jetbrains.kotlinx:kotlinx-parcelize-runtime:1.3.0")
+
 }
