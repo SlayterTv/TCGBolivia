@@ -8,32 +8,95 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="8dp"
             android:orientation="vertical"
-            android:layout_gravity="center"
-            android:gravity="center">
-            <TextView
-                android:id="@+id/textView"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
-                android:layout_width="wrap_content"
+            >
+            <LinearLayout
+                android:id="@+id/layoutconectsocial"
+                android:gravity="center"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/socialtext1"
-                android:textSize="80sp"
-                 />
+                android:visibility="gone"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/socialtext1"
+                    android:textSize="80sp"
+                    />
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sociallogin"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="@string/socialtext2"
+                    />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sociallogin"
-                />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layoutchat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                android:orientation="vertical">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:id="@+id/recyclerchatcontacts"
+                    />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:background="@mipmap/chatimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:id="@+id/recyclerchatmessages"
+                    />
+                <LinearLayout
+                    android:id="@+id/barrachat"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutEmail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:hint="message"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        android:layout_marginBottom="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="@string/socialtext2"
-                />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/chatmessage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="text" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <ImageButton
+                        android:layout_gravity="center"
+                        android:id="@+id/chatenviar"
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/baseline_send_24"
+                        android:layout_height="50dp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
         </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

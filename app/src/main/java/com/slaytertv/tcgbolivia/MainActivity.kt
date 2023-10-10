@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
 
         // Establecer el fragmento por defecto al abrir la actividad
         binding.bottomNavigationView.selectedItemId = R.id.navigation_home
-
     }
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()

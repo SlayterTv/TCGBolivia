@@ -7,11 +7,11 @@
     android:padding="10dp"
     tools:context=".ui.view.profile.tabprofile.SettingsFragment">
 
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Switch
+            android:id="@+id/switchdarkmode"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="48dp"

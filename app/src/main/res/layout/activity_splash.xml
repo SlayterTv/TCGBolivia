@@ -8,16 +8,11 @@
     android:gravity="center"
     tools:context=".SplashActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="soy el splash"/>
-
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        android:layout_height="match_parent"
+        android:src="@mipmap/splash" />
 
 
 </LinearLayout>

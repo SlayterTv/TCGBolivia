@@ -9,25 +9,30 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.slaytertv.tcgbolivia.MainActivity
+import com.slaytertv.tcgbolivia.data.model.CardItem
 import com.slaytertv.tcgbolivia.ui.viewmodel.portfolio.PortfolioViewModel
 import com.slaytertv.tcgbolivia.util.UiState
+import com.slaytertv.tcgbolivia.util.hide
+import com.slaytertv.tcgbolivia.util.show
 import com.slaytertv.tcgbolivia.util.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PortfolioFragment : Fragment() {
-
-    private val portfolioViewModel: PortfolioViewModel by viewModels()
+    var catego:String = ""
     private lateinit var binding: FragmentPortfolioBinding
-    //private lateinit var cardsAdapter: CardsAdapter
-
-    val adaptercardbuy by lazy {
+    private val portfolioViewModel: PortfolioViewModel by viewModels()
+    val adaptercardsell by lazy {
         CardsAdapter(
             onItemClicked = { pos, item ->
-                portfolioViewModel.registerbuy(item)
+                /*val cardItem = item
+                val portfolioVistaFragment = PortfolioVistaFragment.newInstance(cardItem)
+                (requireActivity() as MainActivity).switchFragment(portfolioVistaFragment)*/
+//                portfolioViewModel.registersell(item)
+                navigateToPortfolioVistaFragment(item)
             }
         )
     }
@@ -46,25 +51,21 @@ class PortfolioFragment : Fragment() {
         observer()
         val staggeredGridLayoutManagerS = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         binding.cardsRecyclerView.layoutManager = staggeredGridLayoutManagerS
-        binding.cardsRecyclerView.adapter = adaptercardbuy
-
-        /*val layoutManager = GridLayoutManager(requireContext(), 2) // 2 columnas
-        binding.cardsRecyclerView.layoutManager = layoutManager
-        cardsAdapter = CardsAdapter()
-        binding.cardsRecyclerView.adapter = cardsAdapter*/
-
+        binding.cardsRecyclerView.adapter = adaptercardsell
     }
     fun botones(){
         binding.searchButton.setOnClickListener {
             val partialCardName = binding.searchEditText.text.toString()
             portfolioViewModel.searchCards(partialCardName)
         }
+        binding.logoyugi.setOnClickListener {
+            catego = "yugioh"
+            binding.barrabusqueda.show()
+            binding.labelinfo.hide()
+        }
     }
 
     private fun observer() {
-        portfolioViewModel.cardImageUrls.observe(viewLifecycleOwner) { imageUrls ->
-            adaptercardbuy.setImageUrls(imageUrls)
-        }
         portfolioViewModel.cardsLiveData.observe(viewLifecycleOwner) { cards ->
             if (!cards.isNullOrEmpty()) {
                 val cardNames = cards.joinToString(", ") { it.name }
@@ -74,9 +75,14 @@ class PortfolioFragment : Fragment() {
             }
 
             // Actualizar los datos en el adaptador
-            adaptercardbuy.submitList(cards)
+            adaptercardsell.submitList(cards)
+            if(cards?.size.toString() == "0"){
+                binding.labelinfo.show()
+            }else{
+                binding.labelinfo.hide()
+            }
         }
-        portfolioViewModel.registerbuy.observe(viewLifecycleOwner){state ->
+        portfolioViewModel.registersell.observe(viewLifecycleOwner){ state ->
             when(state){
                 is UiState.Loading -> {
                     //progressbar
@@ -88,7 +94,20 @@ class PortfolioFragment : Fragment() {
                     toast(state.data)
 
                 }
+
+                else -> {}
             }
         }
+    }
+    private fun navigateToPortfolioVistaFragment(cardItem: CardItem) {
+        val args = Bundle().apply {
+            putParcelable(ARG_CARD_ITEM, cardItem)
+        }
+        val portfolioVistaFragment = PortfolioVistaFragment()
+        portfolioVistaFragment.arguments = args
+        (requireActivity() as MainActivity).switchFragment(portfolioVistaFragment)
+    }
+    companion object {
+        private const val ARG_CARD_ITEM = "arg_card_item"
     }
 }

@@ -77,6 +77,8 @@ class LoginFragment : Fragment() {
                     handleLoading(isLoading = false)
                     //analitycs para informar wel login
                     anallogin(binding.passEt.text.toString())
+                    val authIntent = Intent(requireContext(), MainActivity::class.java)
+                    mainLauncher.launch(authIntent)
                     //toast(state.data)
                     //findNavController().navigate(R.id.action_loginFragment_to_homeActivity)
                     //findNavController().navigate(R.id.action_loginFragment_to_home_navigation)
@@ -109,10 +111,7 @@ class LoginFragment : Fragment() {
         with(binding){
             //botn login
             loginBtn.setOnClickListener {
-                //handleLogin()
-                val authIntent = Intent(requireContext(), MainActivity::class.java)
-                mainLauncher.launch(authIntent)
-
+                handleLogin()
             }
             //btn si se olvida el passwr
             forgotPassLabel.setOnClickListener {

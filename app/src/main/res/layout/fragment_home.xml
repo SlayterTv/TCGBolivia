@@ -153,6 +153,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/textbuy"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Buy"
@@ -182,6 +184,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/textsell"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Sell"
@@ -212,6 +216,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/texttop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Top"

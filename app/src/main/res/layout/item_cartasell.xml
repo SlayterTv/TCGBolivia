@@ -1,32 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:orientation="vertical">
-    <TextView
-        android:id="@+id/selltextCantidad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cantidad: "
-        android:textSize="16sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/selltextPrecio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Precio: "
-        android:textSize="16sp"/>
-    <TextView
-        android:id="@+id/selltextName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Precio: "
-        android:textSize="16sp"/>
-    <ImageView
+    android:layout_margin="8dp">
+    <LinearLayout
+        android:padding="8dp"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:id="@+id/Imagesell"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:id="@+id/Imagesell"/>
+        <TextView
+            android:id="@+id/selltextName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name: "
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/selltextSetname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="setname: "
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/selltextSetcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="setcode: "
+            android:textSize="16sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/selltextSetrarity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rare: "
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/selltextSetraritycode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rarecpode: "
+                android:textSize="16sp"/>
+        </LinearLayout>
+        <TextView
+            android:layout_gravity="end"
+            android:id="@+id/selltextSetprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rare"/>
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cant: "/>
+            <TextView
+                android:id="@+id/selltextCantidad"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_weight="2"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bs. "/>
+            <TextView
+                android:id="@+id/selltextPrecio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Precio: "
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

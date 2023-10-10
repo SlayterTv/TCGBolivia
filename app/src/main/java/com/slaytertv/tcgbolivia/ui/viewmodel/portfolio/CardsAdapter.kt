@@ -17,14 +17,7 @@ class CardsAdapter (
     val onItemClicked: (Int, CardItem) -> Unit,
 ): ListAdapter<CardItem, CardsAdapter.CardViewHolder>(CardDiffCallback()) {
 
-    private var cardImageUrls: List<String> = emptyList()
-
-    fun setImageUrls(urls: List<String>) {
-        cardImageUrls = urls
-        notifyDataSetChanged()
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
+     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ListItemCardBinding.inflate(inflater, parent, false)
         return CardViewHolder(binding)
@@ -41,38 +34,18 @@ class CardsAdapter (
         fun bind(card: CardItem) {
             // Actualiza las vistas en el layout de list_item_card.xml directamente
             binding.cardNameTextView.text = card.name
-            binding.cardIdTextView.text = card.id.toString()
             Glide.with(itemView.context)
                 .load("https://images.ygoprodeck.com/images/cards_small/${card.id.toString()}.jpg") // Reemplaza card.imageUrl con la URL real de la imagen
                 .into(binding.cardImage)
             // Bind otras vistas según sea necesario
-            binding.cardsaveitem.setOnClickListener {
-                val cantidadText = binding.cardCantidadEditText.text.toString()
-                val precioText = binding.cardPrecioEditText.text.toString()
-
-                val context = binding.cardsaveitem.context
-                if(precioText.isNullOrEmpty() ){
-                    Toast.makeText(context, "Agregue Precio de Venta", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-                if(cantidadText.isNullOrEmpty()){
-                    Toast.makeText(context, "Agregue una Cantidad de cartas", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
+            binding.cardLinear.setOnClickListener {
+                val context = binding.cardLinear.context
 
                 val resultado = verificaranonimo()
                 if(resultado == "Usuario anónimo"){
                     Toast.makeText(context, "Cree una cuenta para ${resultado} ", Toast.LENGTH_LONG).show()
                     return@setOnClickListener
                 }
-                val cantidad = cantidadText.toInt()
-                val precio = precioText.toInt()
-                val auth = FirebaseAuth.getInstance()
-                val currentUser = auth.currentUser
-                card.cantidad = cantidad
-                card.precio = precio
-                card.user = currentUser!!.uid
-                card.useridcard = "${currentUser!!.uid}_${card.id}"
                 onItemClicked.invoke(adapterPosition,card)
             }
         }

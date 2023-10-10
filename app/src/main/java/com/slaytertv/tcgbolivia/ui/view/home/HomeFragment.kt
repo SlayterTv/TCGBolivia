@@ -22,6 +22,7 @@ import com.slaytertv.tcgbolivia.util.hide
 import com.slaytertv.tcgbolivia.util.show
 import dagger.hilt.android.AndroidEntryPoint
 import com.slaytertv.tcgbolivia.AuthActivity
+import com.slaytertv.tcgbolivia.data.model.CardDosItem
 import com.slaytertv.tcgbolivia.ui.adapters.home.HomeCardBuyAdapter
 import com.slaytertv.tcgbolivia.ui.adapters.home.HomeCardSellAdapter
 import com.slaytertv.tcgbolivia.ui.adapters.home.HomeCardTopAdapter
@@ -55,24 +56,16 @@ class HomeFragment : Fragment() {
     val adaptercardbuy by lazy {
         HomeCardBuyAdapter(
             onItemClicked = { pos, item ->
-                toast(item.toString())
-                //itemselected(item.id,item.name,"movie", email)
-                /*findNavController().navigate(R.id.action_principalFragment_to_chaptersFragment,Bundle().apply {
-                    putParcelable("note",item)
-                })*/
-
+                //
+                //toast(item.toString())
+                navigateToDetailSellorBuyFragment(item,"buy")
             }
         )
     }
     val adaptercardsell by lazy {
         HomeCardSellAdapter(
             onItemClicked = { pos, item ->
-                toast(item.toString())
-                //itemselected(item.id,item.name,"serie", email)
-                //val user = MovieItem(item.id,"serie",item.name,item.desc,item.image,item.date,item.season,item.episodes,"","","")
-                /*findNavController().navigate(R.id.action_principalFragment_to_chaptersFragment,Bundle().apply {
-                    putParcelable("note",item)
-                })*/
+                navigateToDetailSellorBuyFragment(item,"sell")
             }
         )
     }
@@ -80,15 +73,9 @@ class HomeFragment : Fragment() {
         HomeCardTopAdapter(
             onItemClicked = { pos, item ->
                 toast(item.toString())
-                /*itemselected(item.id,"${item.name}","chapter", email)
-                findNavController().navigate(R.id.action_principalFragment_to_onlineActivity,Bundle().apply {
-                    putString("note",item.link)
-                })*/
             }
         )
     }
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -101,19 +88,15 @@ class HomeFragment : Fragment() {
             return binding.root
         }
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //llamar observer
         botones()
-        verificaranonimo()
-        observerB()
-        observerS()
-        observerT()
+        observer()
+        //
         viewModelCardbuy.getCardBuy()
         viewModelCardsell.getCardSell()
         viewModelCardTop.getCardTop()
-
         //recycleradd
         val staggeredGridLayoutManagerS = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         val staggeredGridLayoutManagerT = LinearLayoutManager(activity,RecyclerView.HORIZONTAL,false)
@@ -125,14 +108,41 @@ class HomeFragment : Fragment() {
         binding.homerecyclerviewbuy.adapter = adaptercardbuy
         binding.homerecyclerviewsell.adapter = adaptercardsell
         binding.homerecyclerviewTop.adapter = adaptercardtop
-
-
+    }
+    private fun mostrarocultartexts(a:String,b:String) {
+        if(a == "top" && b == "0" ){
+            binding.homerecyclerviewTop.hide()
+            binding.texttop.hide()
+            binding.homesinanda.show()
+        }
+        else{
+            binding.homerecyclerviewTop.show()
+            binding.texttop.show()
+        }
+        if(a == "buy" && b == "0"){
+            binding.textbuy.hide()
+            binding.homerecyclerviewbuy.hide()
+            binding.homesinanda.show()
+        }else{
+            binding.homesinanda.hide()
+            binding.textbuy.show()
+            binding.homerecyclerviewbuy.show()
+        }
+        if(a == "sell" && b == "0"){
+            binding.textsell.hide()
+            binding.homerecyclerviewsell.hide()
+            binding.homesinanda.show()
+        }
+        else{
+            binding.textsell.show()
+            binding.homerecyclerviewsell.show()
+            binding.homesinanda.hide()
+        }
+        verificaranonimo()
     }
     private fun verificaranonimo() {
         auth = FirebaseAuth.getInstance()
-
         val currentUser: FirebaseUser? = auth.currentUser
-
         if (currentUser != null && currentUser.isAnonymous) {
             binding.homebuttonlogin.show()
             binding.textView8.show()
@@ -142,7 +152,6 @@ class HomeFragment : Fragment() {
             binding.textView8.hide()
         }
     }
-
     fun botones(){
         binding.buttonsell.setOnClickListener {
             (requireActivity() as MainActivity).switchFragment(PortfolioFragment())
@@ -155,8 +164,7 @@ class HomeFragment : Fragment() {
             authLauncher.launch(authIntent)
         }
     }
-
-    private fun observerT() {
+    private fun observer() {
         viewModelCardTop.cardtop.observe(viewLifecycleOwner) { state ->
             when(state){
                 is UiState.Loading -> {
@@ -169,12 +177,10 @@ class HomeFragment : Fragment() {
                 is UiState.Sucess -> {
                     binding.homeProgresbarTop.hide()
                     adaptercardtop.updateList(state.data.toMutableList())
+                    mostrarocultartexts("top",state.data.toMutableList().size.toString())
                 }
             }
         }
-    }
-
-    private fun observerB() {
         viewModelCardbuy.cardbuy.observe(viewLifecycleOwner) { state ->
             when(state){
                 is UiState.Loading -> {
@@ -187,12 +193,10 @@ class HomeFragment : Fragment() {
                 is UiState.Sucess -> {
                     binding.homeProgresbarbuy.hide()
                     adaptercardbuy.updateList(state.data.toMutableList())
+                    mostrarocultartexts("buy",state.data.toMutableList().size.toString())
                 }
             }
         }
-    }
-
-    private fun observerS() {
         viewModelCardsell.cardsell.observe(viewLifecycleOwner){ state ->
             when(state){
                 is UiState.Loading -> {
@@ -205,9 +209,29 @@ class HomeFragment : Fragment() {
                 is UiState.Sucess -> {
                     binding.homeProgressbarsell.hide()
                     adaptercardsell.updateList(state.data.toMutableList())
+                    mostrarocultartexts("sell",state.data.toMutableList().size.toString())
                 }
             }
         }
     }
-
+    private fun navigateToDetailSellorBuyFragment(cardDosItem:CardDosItem,buyorsell:String){
+        val args = Bundle().apply {
+            putParcelable(ARG_CARD_ITEM, cardDosItem)
+        }
+        when(buyorsell){
+            "buy" -> {
+                val detailBuyFragment = DetailBuyFragment()
+                detailBuyFragment.arguments = args
+                (requireActivity() as MainActivity).switchFragment(detailBuyFragment)
+            }
+            "sell" -> {
+                val detailSellFragment = DetailSellFragment()
+                detailSellFragment.arguments = args
+                (requireActivity() as MainActivity).switchFragment(detailSellFragment)
+            }
+        }
+    }
+    companion object {
+        private const val ARG_CARD_ITEM = "arg_card_item"
+    }
 }
