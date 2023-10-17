@@ -8,7 +8,7 @@
     tools:context=".ui.view.profile.tabprofile.SupportFragment">
 
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -39,11 +39,11 @@
                     android:src="@drawable/ic_launcher_background"
                     />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp"/>
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -74,11 +74,11 @@
                     android:src="@drawable/ic_launcher_background"
                     />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp"/>
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -109,11 +109,11 @@
                     android:src="@drawable/ic_launcher_background"
                     />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp"/>
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -144,11 +144,11 @@
                     android:src="@drawable/ic_launcher_background"
                     />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp"/>
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -179,11 +179,11 @@
                     android:src="@drawable/ic_launcher_background"
                     />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp"/>
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -214,11 +214,11 @@
                     android:src="@drawable/ic_launcher_background"
                     />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp"/>
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -249,7 +249,7 @@
                     android:src="@drawable/ic_launcher_background"
                     />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
 
 </LinearLayout>

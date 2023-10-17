@@ -65,13 +65,13 @@ class CardsRepositoryImpl (
         card.user = auth.currentUser!!.uid
         card.useridcard = "${auth.currentUser!!.uid}${card.idcard}${card.set_code}"
         ///firebastore
-        val collectionRef = database.collection("Ventas").document(card.useridcard)
+        //val collectionRef = database.collection("Ventas").document(card.useridcard)
         val collectionuserRef = database.collection("user").document(card.user).collection("venta").document(card.useridcard)
         // Get a new write batch and commit all write operations
         database.runBatch { batch ->
             // Set the value of 'NYC'
             batch.set(collectionuserRef, card)
-            batch.set(collectionRef, card)
+          //  batch.set(collectionRef, card)
         }.addOnCompleteListener {
             createCardSellD(card,result)
         }.addOnFailureListener { e ->
@@ -139,7 +139,7 @@ class CardsRepositoryImpl (
 
 
 
-    override suspend fun searchCardsByName(nameQuery: String): List<CardDosItem> {
+    override suspend fun searchCardsByName(nameQuery: String,cuac:String): List<CardDosItem> {
         val cardsReference: DatabaseReference = databaseD.reference.child("ventas")
 
         val query = cardsReference.orderByChild("name")
@@ -152,7 +152,9 @@ class CardsRepositoryImpl (
         for (childSnapshot in dataSnapshot.children) {
             val card = childSnapshot.getValue(CardDosItem::class.java)
             card?.let {
-                cardItems.add(it)
+                if(it.juego == cuac){
+                    cardItems.add(it)
+                }
             }
         }
 

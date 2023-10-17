@@ -7,7 +7,7 @@
     android:padding="10dp"
     tools:context=".ui.view.profile.tabprofile.SettingsFragment">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Switch
@@ -16,12 +16,12 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:text="Notificationi" />
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
     <Space
         android:layout_width="match_parent"
         android:layout_height="10dp"/>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Switch
@@ -29,12 +29,12 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:text="Dark Mode" />
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
     <Space
         android:layout_width="match_parent"
         android:layout_height="10dp"/>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Switch
@@ -42,12 +42,12 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:text="Grid View" />
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
     <Space
         android:layout_width="match_parent"
         android:layout_height="10dp"/>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Switch
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:text="Quick Add" />
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
     <Space
         android:layout_width="match_parent"
         android:layout_height="10dp"/>

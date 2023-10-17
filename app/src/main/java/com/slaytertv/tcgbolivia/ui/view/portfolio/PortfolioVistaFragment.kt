@@ -99,6 +99,7 @@ class PortfolioVistaFragment : Fragment() {
                 race = cardItem.race,
                 attribute = cardItem.attribute,
                 imageUrl = binding.selectedImageTextView.text.toString(),
+                juego = cardItem.juego ,
                 precio = binding.cardPrecioEditText.text.toString().toInt(),
                 cantidad = binding.cardCantidadEditText.text.toString().toInt(),
                 user = "",

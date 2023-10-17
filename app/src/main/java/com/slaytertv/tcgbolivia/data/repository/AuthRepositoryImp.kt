@@ -1,12 +1,17 @@
 package com.slaytertv.tcgbolivia.data.repository
 
 import android.content.SharedPreferences
+import android.provider.Settings.Global.getString
+import android.util.Log
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
+import com.slaytertv.tcgbolivia.R
 import com.slaytertv.tcgbolivia.data.model.UserItem
 import com.slaytertv.tcgbolivia.util.FireStoreCollection
 import com.slaytertv.tcgbolivia.util.SharedPrefConstants
@@ -21,7 +26,8 @@ class AuthRepositoryImp(
     //sharedpreferences
     val appPreferences: SharedPreferences,
     //gson
-    val gson: Gson
+    val gson: Gson,
+    val messagin:FirebaseMessaging
 ) : AuthRepository {
 
     //cuando alguien se registre pediremos el email y el password y los demas datos los colocaremos en user co UserItem
@@ -93,6 +99,30 @@ class AuthRepositoryImp(
                 )
             }
     }
+    private fun mitoken(user: UserItem) {
+        messagin.token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("TAG", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+            // Get new FCM registration token
+            val token = task.result
+            updatetoken(user,token)
+        })
+    }
+    private fun updatetoken(user:UserItem, toek:String){
+        val document = database.collection(FireStoreCollection.USER).document(user.id)
+        //pasamos el id q creara el dicumento y lo colocamos en nuestro documento a crear
+        user.tokenmessag =toek
+        document
+            .update("tokenmessag",toek)
+            .addOnSuccessListener {
+            }
+            .addOnFailureListener {
+                Log.w("TAG","error $it")
+            }
+
+    }
 
     //funcion para actualizar info del usuario
     override fun updateUserInfo(user: UserItem, result: (UiState<String>) -> Unit) {
@@ -135,6 +165,7 @@ class AuthRepositoryImp(
                             if (it == null){
                                 result.invoke(UiState.Failure("Failed to store local session"))
                             }else{
+                                mitoken(it)
                                 result.invoke(UiState.Sucess("Login successfully!"))
                                 /*if(it.statedate == "open") {
                                     result.invoke(UiState.Sucess("Login successfully!"))

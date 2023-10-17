@@ -12,7 +12,7 @@ interface YgoProDeckApiService {
     @GET("cardinfo.php")
     suspend fun getAllCards(): Response<CardResponse>
 
-    //solo parcial
+    //por nombre
     @GET("cardinfo.php")
     suspend fun getCardsByPartialName(@Query("fname") partialName: String?): Response<CardResponse>
 

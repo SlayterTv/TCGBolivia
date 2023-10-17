@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import com.slaytertv.tcgbolivia.data.repository.AuthRepository
 import com.slaytertv.tcgbolivia.data.repository.AuthRepositoryImp
@@ -47,8 +48,9 @@ object RepositoryModule {
         database: FirebaseFirestore,
         auth: FirebaseAuth,
         appPreferences: SharedPreferences,
-        gson: Gson
+        gson: Gson,
+        messaging: FirebaseMessaging
     ): AuthRepository {
-        return AuthRepositoryImp(auth,database,appPreferences,gson)
+        return AuthRepositoryImp(auth,database,appPreferences,gson,messaging)
     }
 }

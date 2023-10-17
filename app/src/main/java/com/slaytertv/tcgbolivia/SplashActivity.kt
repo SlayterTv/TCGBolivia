@@ -1,5 +1,6 @@
 package com.slaytertv.tcgbolivia
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.slaytertv.tcgbolivia.ui.viewmodel.splash.SplashViewModel
 import com.slaytertv.tcgbolivia.ui.viewmodel.splash.SplashViewModelFactory
+import com.slaytertv.tcgbolivia.util.SharedPrefConstants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -46,16 +48,25 @@ class SplashActivity : AppCompatActivity() {
             return
         }
 
-        if (viewModel.isUserLoggedIn()) {
-            navigateToMainActivity()
-        } else {
-            viewModel.signInAnonymously { success, errorMessage ->
-                if (success) {
-                    navigateToMainActivity()
-                } else {
-                    showErrorAndExit(errorMessage ?: "Error desconocido")
+
+        val sharedPreferences = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val isFirstRun = sharedPreferences.getBoolean(SharedPrefConstants.SLIDER_INICIAL, true)
+        if (!isFirstRun) {
+
+            if (viewModel.isUserLoggedIn()) {
+                navigateToActivity(MainActivity())
+            } else {
+                viewModel.signInAnonymously { success, errorMessage ->
+                    if (success) {
+                        navigateToActivity(MainActivity())
+                    } else {
+                        showErrorAndExit(errorMessage ?: "Error desconocido")
+                        navigateToActivity(SliderActivity())
+                    }
                 }
             }
+        }else{
+            navigateToActivity(SliderActivity())
         }
     }
 
@@ -73,8 +84,9 @@ class SplashActivity : AppCompatActivity() {
         finishAffinity()
     }
 
-    private fun navigateToMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
+
+    private fun navigateToActivity(acti: Activity) {
+        val intent = Intent(this, acti::class.java)
         startActivity(intent)
         finish()
     }

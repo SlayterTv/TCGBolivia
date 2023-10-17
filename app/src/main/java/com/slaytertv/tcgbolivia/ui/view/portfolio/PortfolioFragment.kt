@@ -32,6 +32,7 @@ class PortfolioFragment : Fragment() {
                 val portfolioVistaFragment = PortfolioVistaFragment.newInstance(cardItem)
                 (requireActivity() as MainActivity).switchFragment(portfolioVistaFragment)*/
 //                portfolioViewModel.registersell(item)
+                item.juego = catego
                 navigateToPortfolioVistaFragment(item)
             }
         )

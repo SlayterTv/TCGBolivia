@@ -228,7 +228,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_marginLeft="20dp"
@@ -239,7 +239,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Login or Register" />
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <Space
             android:layout_width="match_parent"

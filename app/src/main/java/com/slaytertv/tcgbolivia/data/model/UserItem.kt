@@ -7,5 +7,6 @@ data class UserItem(
     val location: String = "",
     val phone: String = "",
     val email: String = "",
-    val password: String = ""
+    val password: String = "",
+    var tokenmessag:String=""
 )

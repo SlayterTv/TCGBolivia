@@ -54,7 +54,7 @@ class MarketplaceFragment : Fragment() {
     fun botones(){
         binding.searchcardbuyButton.setOnClickListener {
             val partialCardName = binding.searchcardbuyEditText.text.toString()
-            marketplaceViewModel.searchCards(partialCardName)
+            marketplaceViewModel.searchCards(partialCardName,catego)
         }
         binding.logoyugi.setOnClickListener {
             catego = "yugioh"

@@ -110,15 +110,6 @@ class HomeFragment : Fragment() {
         binding.homerecyclerviewTop.adapter = adaptercardtop
     }
     private fun mostrarocultartexts(a:String,b:String) {
-        if(a == "top" && b == "0" ){
-            binding.homerecyclerviewTop.hide()
-            binding.texttop.hide()
-            binding.homesinanda.show()
-        }
-        else{
-            binding.homerecyclerviewTop.show()
-            binding.texttop.show()
-        }
         if(a == "buy" && b == "0"){
             binding.textbuy.hide()
             binding.homerecyclerviewbuy.hide()
@@ -144,12 +135,12 @@ class HomeFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         val currentUser: FirebaseUser? = auth.currentUser
         if (currentUser != null && currentUser.isAnonymous) {
-            binding.homebuttonlogin.show()
-            binding.textView8.show()
+            binding.logue.show()
+            binding.homesinanda.show()
         } else {
             // Usuario autenticado, oculta el botón
-            binding.homebuttonlogin.hide()
-            binding.textView8.hide()
+            binding.logue.hide()
+            binding.homesinanda.hide()
         }
     }
     fun botones(){
@@ -179,6 +170,8 @@ class HomeFragment : Fragment() {
                     adaptercardtop.updateList(state.data.toMutableList())
                     mostrarocultartexts("top",state.data.toMutableList().size.toString())
                 }
+
+                else -> {}
             }
         }
         viewModelCardbuy.cardbuy.observe(viewLifecycleOwner) { state ->
@@ -195,6 +188,8 @@ class HomeFragment : Fragment() {
                     adaptercardbuy.updateList(state.data.toMutableList())
                     mostrarocultartexts("buy",state.data.toMutableList().size.toString())
                 }
+
+                else -> {}
             }
         }
         viewModelCardsell.cardsell.observe(viewLifecycleOwner){ state ->
@@ -211,6 +206,8 @@ class HomeFragment : Fragment() {
                     adaptercardsell.updateList(state.data.toMutableList())
                     mostrarocultartexts("sell",state.data.toMutableList().size.toString())
                 }
+
+                else -> {}
             }
         }
     }

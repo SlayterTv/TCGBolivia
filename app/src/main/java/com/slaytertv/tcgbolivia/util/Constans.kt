@@ -10,6 +10,7 @@ object SharedPrefConstants {
     val LOCAL_SHARED_PREF = "local_shared_pref"
     //la sesion del usuario
     val USER_SESSION = "user_session"
+    val SLIDER_INICIAL = "true"
 }
 //
 object FirebaseStorageConstants {

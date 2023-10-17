@@ -20,7 +20,7 @@ interface CardsRepository {
     fun getCardTop(result: (UiState<List<CardDosItem>>) -> Unit)
     fun updateCardTop(cardtop: CardItem, result: (UiState<String>) -> Unit)
     //
-    suspend fun searchCardsByName(nameQuery: String): List<CardDosItem>
+    suspend fun searchCardsByName(nameQuery: String,cuac:String): List<CardDosItem>
 
     //
 

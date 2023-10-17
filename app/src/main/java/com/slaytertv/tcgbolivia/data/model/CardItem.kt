@@ -17,6 +17,7 @@ data class CardItem(
     val race: String = "",
     val attribute: String = "",
     val imageUrl: String = "",
+    var juego:String ="",
     //var precio: Int = 0,
     //var cantidad: Int = 0,
     //var user: String = "",

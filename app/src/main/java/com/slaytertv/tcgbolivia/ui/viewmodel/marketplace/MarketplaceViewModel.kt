@@ -20,9 +20,9 @@ class MarketplaceViewModel @Inject constructor(
     private val _cardsLiveData = MutableLiveData<List<CardDosItem>?>()
     val cardsLiveData: LiveData<List<CardDosItem>?> get() = _cardsLiveData
 
-   fun searchCards(partialName: String) {
+   fun searchCards(partialName: String,cuac:String) {
        viewModelScope.launch {
-           val searchResults = repository.searchCardsByName(partialName)
+           val searchResults = repository.searchCardsByName(partialName,cuac)
            _cardsLiveData.postValue(searchResults)
        }
     }
