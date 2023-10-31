@@ -60,11 +60,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="seleccione una categoria de cartas para buscar"/>
+                android:gravity="center"
+                android:text="seleccione una categoria"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Luego en la barra de busqueda coloque el nombre de la carta y presione buscar"/>
+                android:gravity="center"
+                android:text="En la barra de busqueda coloque el nombre de la carta y presione el icono de busqueda"/>
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="8dp"/>

@@ -7,9 +7,9 @@
     <string name="close">Close</string>
     <!-- datos para pedir en el registro -->
     <string name="enter_first_name">Introduzca sus Nombres</string>
-    <string name="enter_last_name">Introduzca su Apellidos</string>
+    <string name="enter_last_name">Introduzca sus Apellidos</string>
     <!-- datos para el email  login,etc -->
-    <string name="enter_email">Introduzca la dirección de correo electrónico</string>
+    <string name="enter_email">Introduzca su correo electrónico</string>
     <string name="invalid_email">Correo electrónico ingresado no válido</string>
     <!-- datoos del password -->
     <string name="enter_password">Ingrese Contraseña</string>
@@ -43,41 +43,41 @@
 
 
     <!-- home -->
-    <string name="homewelcome">Wellcome to</string>
+    <string name="homewelcome">Bienvenido a</string>
     <string name="homename">TCGBolivia</string>
     <string name="homedata">COLLECT. TRACK. PROFIT</string>
-    <string name="hometip1">Start building your Collecions!</string>
-    <string name="hometip2">Before we can create any charts, well first need to get some products in here!</string>
-    <string name="homebuttonadd">Add Products</string>
-    <string name="homewant">Want to save your collection?</string>
-    <string name="homebuttonregister">register or Login here</string>
+    <string name="hometip1">Comience a construir su propia coleccion!</string>
+    <string name="hometip2">Antes de que podamos crear gráficos, primero necesitamos incluir algunos productos aquí!</string>
+    <string name="homebuttonadd">Agrgar Productos</string>
+    <string name="homewant">quieres guardar tu coleccion?</string>
+    <string name="homebuttonregister">regístrate o inicia sesión aquí</string>
     <!-- marketplace -->
-    <string name="marketsearch">search</string>
-    <string name="marketquick_filters">Quick Filters</string>
-    <string name="market2search">Search</string>
+    <string name="marketsearch">Buscar</string>
+    <string name="marketquick_filters">Filtros rapidos</string>
+    <string name="market2search">Buscar</string>
     <string name="marketmarketplace">Marketplace</string>
     <!--menu-->
-    <string name="menuhome">Home</string>
-    <string name="menusearch">Search</string>
-    <string name="menusocial">Social</string>
-    <string name="menuportfolio">Portfolio</string>
-    <string name="menuprofile">Profile</string>
+    <string name="menuhome">Inicio</string>
+    <string name="menusearch">Comprar</string>
+    <string name="menusocial">Chat</string>
+    <string name="menuportfolio">Vender</string>
+    <string name="menuprofile">Perfil</string>
     <!--social-->
-    <string name="socialtext1">Its time to connect</string>
-    <string name="sociallogin">Login</string>
-    <string name="socialtext2">Login required for social access</string>
+    <string name="socialtext1">Es tiempo de Conectarte</string>
+    <string name="sociallogin">Iniciar Sesion</string>
+    <string name="socialtext2">Inicio de Secion requerido</string>
     <!--portfolio-->
-    <string name="portfotext1">You have not added anything yet!</string>
-    <string name="portfotext2">Lets get some products in here!</string>
-    <string name="portfobuttonadd">Add Products</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="portfotext1">No tienes nada agregado aun!</string>
+    <string name="portfotext2">Consigamos algunos productoas aqui!</string>
+    <string name="portfobuttonadd">Agregar Productos</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_slider">SliderActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="next">Siguiente</string>
+    <string name="previous">Anterior</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

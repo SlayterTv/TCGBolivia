@@ -58,32 +58,32 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1. select category"/>
+            android:text="1. selecciona una categoria"/>
         <TextView
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="2. search your card"/>
+            android:text="2. busca tu carta"/>
         <TextView
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="3. select the item"/>
+            android:text="3. selecciona el item"/>
         <TextView
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="4. add price and quantity"/>
+            android:text="4. agrega el precio y la cantidad"/>
         <TextView
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="5. press save"/>
+            android:text="5. presiona guardar"/>
         <TextView
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="6. your items estan en home"/>
+            android:text="6. tus items estaran en el inicio"/>
         <Space
             android:layout_width="match_parent"
             android:layout_height="8dp"/>
